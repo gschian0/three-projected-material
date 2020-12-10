@@ -58,9 +58,9 @@
       const dummy = new THREE.Object3D()
 
       // load the example texture
-      const texture = new THREE.TextureLoader().load('./images/charles-unsplash.jpg')
+      const texture = new THREE.TextureLoader().load('./images/GennaroSchiano.jpg')
 
-      const geometry = new THREE.TetrahedronBufferGeometry(0.4)
+      const geometry = new THREE.SphereBufferGeometry(1,10,10,10)
       const material = new ProjectedMaterial({
         camera: webgl.camera,
         texture: texture,
@@ -81,6 +81,9 @@
         // position the element
         dummy.position.x = random(-width / 2, width / 2)
         dummy.position.y = random(-height / 2, height / 2)
+        //  dummy.position.x = Math.sin(3*i);
+        //  dummy.position.y = Math.cos(6*i);
+
         dummy.rotation.x = random(0, Math.PI * 2)
         dummy.rotation.y = random(0, Math.PI * 2)
         dummy.rotation.z = random(0, Math.PI * 2)
@@ -93,7 +96,7 @@
 
         // rotate the element a bit
         // so they don't show the image initially
-        dummy.rotateX(-Math.PI / 2)
+        dummy.rotateX(-Math.PI / 4)
         dummy.updateMatrix()
         instancedMesh.setMatrixAt(i, dummy.matrix)
 
@@ -109,6 +112,12 @@
         for (let i = 0; i < NUM_ELEMENTS; i++) {
           dummy.position.copy(initialPositions[i])
           dummy.rotation.copy(initialRotations[i])
+        
+        // position the element
+        // dummy.position.x = random(-width / 2, width / 2)
+        // dummy.position.y = random(-height / 2, height / 2)
+        //  dummy.position.x = Math.sin(1*i+time);
+        //  dummy.position.y = Math.cos(6*i+time);
 
           dummy.rotateX(time * webgl.controls.speed)
           dummy.updateMatrix()
